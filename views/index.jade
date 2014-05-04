@@ -1,18 +1,3 @@
 extends layout
 
-block content
-    table(border="1")
-        tr
-            td Name
-            td Qa SignOff
-            td Code Reviewed
-            td Released On
-        each release in releases
-            tr
-                td #{release.name}
-                td #{release.qaSignOff}
-                td #{release.codeSignOff}
-                - var day   = release.releasedOnDate.getDate();
-                - var month = release.releasedOnDate.getMonth() + 1;
-                - var year  = release.releasedOnDate.getFullYear();
-                td #{month + "/" + day + "/" + year}
+Releases

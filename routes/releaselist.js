@@ -10,7 +10,7 @@ function ReleaseList(connection) {
 ReleaseList.prototype = {
     showReleases: function(req, res) {
         release.find({}, function foundReleases(err, data) {
-            res.render('index', {title: 'ProjectR', releases: data})
+            res.render('releases', {title: 'ProjectR', releases: data})
         });
     }
 }
