@@ -1,6 +1,5 @@
 var ReleaseList = require('./routes/releaseList');
-//var releaseList = new ReleaseList(process.env.CUSTOMCONNSTR_MONGOLAB_URI);
-var releaseList = new ReleaseList("mongodb://projectr-data:z6g.S6QEZj1Nxk2EajNwKBuUMKugHFBnjLbU9FrmJO8-@ds035747.mongolab.com:35747/projectr-data");
+var releaseList = new ReleaseList(process.env.CUSTOMCONNSTR_MONGOLAB_URI);
 var express = require('express');
 var path = require('path');
 var favicon = require('static-favicon');
