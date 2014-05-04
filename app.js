@@ -6,22 +6,25 @@ var favicon = require('static-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
-
 var routes = require('./routes/index');
 var users = require('./routes/users');
 
 var app = express();
-
-// view engine setup
-app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'jade');
-
-app.use(favicon());
-app.use(logger('dev'));
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded());
-app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'public')));
+app.configure(function () {
+    app.set('port', process.env.PORT || 3000);
+    app.set('views', path.join(__dirname, 'views'));
+    app.set('view engine', 'jade');
+    app.use(favicon());
+    app.use(logger());
+    app.use(bodyParser());
+    app.use(express.methodOverride());
+    app.use(cookieParser());
+    app.use(express.session());
+    app.use(everyauth.middleware(app));
+    app.use(app.router);
+    app.use(require('less-middleware')({ src: __dirname + '/public' }));
+    app.use(express.static(path.join(__dirname, 'public')));
+});
 
 app.use('/', routes);
 app.use('/users', users);
@@ -33,7 +36,7 @@ app.use(function(req, res, next) {
     next(err);
 });
 
-app.get('/releases', releaseList.showReleases.bind(releaseList));
+//app.get('/releases', releaseList.showReleases.bind(releaseList));
 
 /// error handlers
 
