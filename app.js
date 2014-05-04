@@ -33,7 +33,7 @@ app.use(function(req, res, next) {
     next(err);
 });
 
-app.get('/', releaseList.showReleases.bind(releaseList));
+app.get('/releases', releaseList.showReleases.bind(releaseList));
 
 /// error handlers
 
